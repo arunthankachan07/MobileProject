@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends 'mobile/index.html' %}
+{% block body_block %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="cartview">
+                <h2>My Cart</h2>
+                <table class="table" style="color:white">
+                    {% for cart_item in cart_items%}
+                    <tr>
+                        <td style="width:10%;height:10%;"><img src="{{cart_item.product.image.url}}" class="card-img-top" alt="..."></td>
+                        <td>{{cart_item.product}} <div>{{cart_item.product.price}}</div> </td>
+
+                        <td>{{cart_item.qty}}</td>
+                        <td>{{cart_item.price_total}}</td>
+                        <td><a href="{%url 'removeitem' cart_item.id%}" class="btn btn-danger">Remove Item</a></td>
+<!--                        <td><a href="{%url 'order' cart_item.id%}" class="btn btn-warning">Buy Now</a></td>-->
+                          </tr>
+                    {%endfor%}
+
+                </table>
+                <table class="table" style="color:white;font-size:24px;font-weight:500;">
+                    <tr>
+                        <td>Sub Total: {{total_price}}</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" class="btn btn-success">Proceed to Buy</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from .views import index,listmobile,add_product,mobile_detail,update_mobile,registration,login_user,\
     signout,mobile_delete,item_order,view_my_orders,order_cancel,view_cart,add_to_cart,\
-    remove_cart_item,change_password,item_order_cart
+    remove_cart_item,change_password,item_order_cart,admin_order_view,order_delivered,order_shipped
 
 
 
@@ -40,5 +40,8 @@ path("viewcart",view_cart,name="viewcart"),
 path("removeitem/<int:id>",remove_cart_item,name="removeitem"),
 path("changepassword",change_password,name="changepassword"),
 path("itemorderdcart/<int:id>",item_order_cart,name="cartorder"),
+path("adminvieworder",admin_order_view,name="vieworderadmin"),
+path("deliveredorder/<int:id>",order_delivered,name="orderdelivered"),
+path("shiporder/<int:id>",order_shipped,name="ordership"),
 
 ]

@@ -211,3 +211,23 @@ def change_password(request):
     return render(request, 'mobile/changepassword.html', {
         'form': form
     })
+
+@login_required
+def admin_order_view(request):
+    orders=Order.objects.all()
+    context={}
+    context["orders"]=orders
+    return render(request,"mobile/viewordersadmin.html",context)
+
+@login_required
+def order_delivered(request,id):
+    order=Order.objects.get(id=id)
+    order.status='Delivered'
+    order.save()
+    return redirect("vieworderadmin")
+@login_required
+def order_shipped(request,id):
+    order=Order.objects.get(id=id)
+    order.status='Shipped'
+    order.save()
+    return redirect("vieworderadmin")

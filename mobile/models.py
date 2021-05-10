@@ -17,9 +17,10 @@ class Order(models.Model):
     product=models.ForeignKey(Product,on_delete=models.CASCADE)
     address=models.CharField(max_length=150)
     choices=(
-        ("ordered","ordered"),
-        ("delivered","delivered"),
-        ("cancelled","cancelled")
+        ("Ordered","Ordered"),
+        ("Delivered","Delivered"),
+        ("Cancelled","Cancelled"),
+        ("Shipped","Shipped")
     )
     status=models.CharField(max_length=100,choices=choices,default="ordered")
     user=models.CharField(max_length=120)
@@ -39,10 +40,3 @@ class Carts(models.Model):
 
         super(Carts, self).save(*args, **kwargs)
 
-    # @property
-    # def order_total(self):
-    #     order_item_list = self.price_total.all()
-    #     ordertotal = 0
-    #     for x in order_item_list:
-    #         ordertotal += (x.qty * x.product.price)
-    #     return ordertotal

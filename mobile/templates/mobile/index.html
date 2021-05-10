@@ -26,6 +26,7 @@
                     <a style="color:white;" class="list-group-item list-group-item-action bg-success" href="{%url 'list'%}">List all Mobile</a>
                    {% if request.user.is_superuser%}
                     <a style="color:white;" class="list-group-item list-group-item-action bg-success" href="{%url 'addproduct'%}">Add New Product</a>
+                    <a style="color:white;" class="list-group-item list-group-item-action bg-success" href="{%url 'vieworderadmin'%}">Orders</a>
                    {% endif %}
                      {% if not request.user.is_superuser%}
                     <a style="color:white;" class="list-group-item list-group-item-action bg-success" href="{%url 'vieworder'%}">My Orders</a>

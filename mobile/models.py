@@ -38,3 +38,11 @@ class Carts(models.Model):
         self.price_total = self.product.price * self.qty
 
         super(Carts, self).save(*args, **kwargs)
+
+    # @property
+    # def order_total(self):
+    #     order_item_list = self.price_total.all()
+    #     ordertotal = 0
+    #     for x in order_item_list:
+    #         ordertotal += (x.qty * x.product.price)
+    #     return ordertotal

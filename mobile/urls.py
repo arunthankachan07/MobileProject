@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from .views import index,listmobile,add_product,mobile_detail,update_mobile,registration,login_user,\
     signout,mobile_delete,item_order,view_my_orders,order_cancel,view_cart,add_to_cart,\
-    remove_cart_item,change_password
+    remove_cart_item,change_password,item_order_cart
 
 
 
@@ -39,5 +39,6 @@ path("addtocart/<int:id>",add_to_cart,name="addtocart"),
 path("viewcart",view_cart,name="viewcart"),
 path("removeitem/<int:id>",remove_cart_item,name="removeitem"),
 path("changepassword",change_password,name="changepassword"),
+path("itemorderdcart/<int:id>",item_order_cart,name="cartorder"),
 
 ]

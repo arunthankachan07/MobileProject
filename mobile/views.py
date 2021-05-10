@@ -159,11 +159,13 @@ def add_to_cart(request,id):
 @login_required
 def view_cart(request):
     cart_items=Carts.objects.filter(user=request.user)
-    context={}
-    context["cart_items"]=cart_items
+    # context={}
+    # context["cart_items"]=cart_items
+    total=Carts.objects.filter(user=request.user).aggregate(Sum('price_total'))
 
 
-    return render(request,"mobile/viewcart.html",context)
+
+    return render(request,"mobile/viewcart.html", {"cart_items":cart_items,"total":total})
 
 @login_required
 def remove_cart_item(request,id):
@@ -175,6 +177,23 @@ def remove_cart_item(request,id):
     else:
         item.delete()
         return redirect("viewcart")
+
+@login_required
+def item_order_cart(request,id):
+    item = Carts.objects.get(id=id)
+    form=OrderForm(initial={'user':request.user,'product':item.product})
+    context={}
+    context["form"]=form
+    if request.method=="POST":
+        form=OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            remove_cart_item(request,id=id)
+            return redirect("viewcart")
+        else:
+            context["form"]=form
+            return render(request, "mobile/ordereditem.html", context)
+    return render(request,"mobile/ordereditem.html",context)
 
 @login_required
 def change_password(request):
